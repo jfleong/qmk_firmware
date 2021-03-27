@@ -2,18 +2,48 @@
 
 enum custom_keycodes {
     TWITCHTV = SAFE_RANGE,
+    CHAT_MASHER,
+    CHAT_LUV,
+    CHAT_POGGERS,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case TWITCHTV:
-        if (record->event.pressed) {
-            // when keycode TWITCHTV is pressed
-            SEND_STRING("https://twitch.tv/jlbanger");
-        } else {
-            // when keycode QMKBEST is released
-        }
-        break;
+        case TWITCHTV:
+            if (record->event.pressed) {
+                // when keycode TWITCHTV is pressed
+                SEND_STRING("https://twitch.tv/jlbanger");
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+        case CHAT_MASHER:
+            if (record->event.pressed) {
+                // when keycode TWITCHTV is pressed
+                SEND_STRING("jlbangMasher jlbangMasher jlbangMasher");
+            } else {
+                // when keycode QMKBEST is released
+                SEND_STRING(SS_TAP(X_ENTER));
+            }
+            break;
+        case CHAT_LUV:
+            if (record->event.pressed) {
+                // when keycode TWITCHTV is pressed
+                SEND_STRING("jlbangLuv jlbangLuv jlbangLuv");
+            } else {
+                // when keycode QMKBEST is released
+                SEND_STRING(SS_TAP(X_ENTER));
+            }
+            break;
+        case CHAT_POGGERS:
+            if (record->event.pressed) {
+                // when keycode TWITCHTV is pressed
+                SEND_STRING("jlbangPoggers jlbangPoggers jlbangPoggers");
+            } else {
+                // when keycode QMKBEST is released
+                SEND_STRING(SS_TAP(X_ENTER));
+            }
+            break;
     }
     return true;
 };
@@ -31,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [1] = LAYOUT_80_with_macro(
     _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     RGB_HUI, RGB_HUD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    RGB_SAI, RGB_SAD, RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, KC_LPRN, KC_RPRN, _______, _______,  _______, _______, _______, _______,
+    RGB_SAI, RGB_SAD, RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, KC_LPRN, KC_RPRN, _______, _______, _______, _______, _______, _______,
     RGB_VAI, RGB_VAD, _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,          _______, _______,
     _______, _______, LT(2, KC_LSFT),   _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______
@@ -55,14 +85,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_0,    _______, _______, _______, _______, _______, _______
   ),
   /* right alt toggles this layer on */
-  /* Y = my twitch URL */
   [4] = LAYOUT_80_with_macro(
-    _______,          _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, TWITCHTV, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______,          _______, _______,
-    _______, _______, _______,          _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______, _______
+    _______,          _______, _______, _______, _______, _______, _______, _______,  _______, _______,     _______,  _______,      _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______,     _______,  _______,      _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, TWITCHTV, _______, _______,     _______,  CHAT_POGGERS, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______,     CHAT_LUV, _______,      _______,         _______, _______,
+    _______, _______, _______,          _______, _______, _______, _______, _______,  _______, CHAT_MASHER, _______,  _______,      _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______,           _______, _______,     _______,  _______,      _______, _______, _______, _______
   ),
 };
 
