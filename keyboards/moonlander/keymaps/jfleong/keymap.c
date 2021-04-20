@@ -127,12 +127,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [MDIA] = LAYOUT_moonlander(
-        LED_LEVEL,_______,_______, _______, _______, _______, _______,           LALT(KC_A), _______, _______, _______, _______,  _______, RESET,
-        _______, _______, _______, _______, _______, _______, _______,           LALT(KC_V), _______, _______, _______, _______,  _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______,    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, _______, _______,
-        _______, _______, _______, _______, _______, _______,                                _______, KC_LBRC, KC_RBRC, _______,  _______, _______,
-        _______, _______, _______, _______, _______,          _______,           _______,             KC_VOLU, KC_VOLD, KC_MUTE,  _______, _______,
-                                            _______, _______, _______,           _______,    _______, KC_MPLY
+        LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______,  _______, RESET,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, KC_PAST,  _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, _______, _______,
+        _______, _______, _______, _______, _______, _______,                             _______, KC_LBRC, KC_RBRC, _______,  _______, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          KC_VOLU, KC_VOLD, KC_MUTE,  _______, _______,
+                                            _______, _______, _______,           _______, _______, KC_MPLY
     ),
 
     [TTV] = LAYOUT_moonlander(
@@ -145,30 +145,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-// How long (in milliseconds) to wait between animation steps for each of the "Solid color breathing" animations
-const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {30, 20, 10, 5};
-
-uint32_t default_layer_state_set_user(uint32_t state) {
-  rgblight_sethsv(HSV_PURPLE);
-  rgblight_mode(5);
-  return state;
-}
-
-uint32_t layer_state_set_user(uint32_t state) {
-    uint8_t layer = biton32(state);
-    switch(layer) {
-    case BASE:
-        rgblight_sethsv(HSV_PURPLE);
-        break;
-    case SYMB:
-        rgblight_sethsv(HSV_WHITE);
-        break;
-    case MDIA:
-        rgblight_sethsv(HSV_GREEN);
-        break;
-    case TTV:
-        rgblight_sethsv(HSV_CYAN);
-        break;
-    }
-    return state;
-}
+// // How long (in milliseconds) to wait between animation steps for each of the "Solid color breathing" animations
+// const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {30, 20, 10, 5};
+// 
+// uint32_t default_layer_state_set_user(uint32_t state) {
+//   rgblight_sethsv(HSV_PURPLE);
+//   rgblight_mode(5);
+//   return state;
+// }
+// 
+// uint32_t layer_state_set_user(uint32_t state) {
+//     uint8_t layer = biton32(state);
+//     switch(layer) {
+//     case BASE:
+//         rgblight_sethsv(HSV_PURPLE);
+//         break;
+//     case SYMB:
+//         rgblight_sethsv(HSV_WHITE);
+//         break;
+//     case MDIA:
+//         rgblight_sethsv(HSV_GREEN);
+//         break;
+//     case TTV:
+//         rgblight_sethsv(HSV_CYAN);
+//         break;
+//     }
+//     return state;
+// }
