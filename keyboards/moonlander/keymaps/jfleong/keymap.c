@@ -111,8 +111,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_ESC,   KC_1,    KC_2,     KC_3,    KC_4,     KC_5,   KC_6,             KC_7,       KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
         KC_TAB,   KC_Q,    KC_W,     KC_E,    KC_R,     KC_T,   _______,          LALT(KC_A), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        KC_LCTRL, KC_A,    KC_S,     KC_D,    KC_F,     KC_G,   KC_HYPR,          LALT(KC_V), KC_H,    KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
-        KC_LSFT,  KC_Z,    KC_X,     KC_C,    KC_V,     KC_B,                                 KC_N,    KC_M,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
+        KC_LCTRL, KC_A,    KC_S,     KC_D,    KC_F,     KC_G,   KC_HYPR,          LALT(KC_V), KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_LSFT,  KC_Z,    KC_X,     KC_C,    KC_V,     KC_B,                                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         KC_GRV,   _______, KC_LCTRL, KC_LGUI, KC_LALT,          OSL(TTV),         OSL(TTV),            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, _______,
                                      LT(SYMB, KC_ENT), _______, _______,                      KC_ENT,  _______, LT(MDIA, KC_SPC)
     ),
@@ -128,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [MDIA] = LAYOUT_moonlander(
         LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______,  _______, RESET,
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, KC_PAST,  _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, KC_LPRN, KC_RPRN, KC_PAST,  _______, _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, _______, _______,
         _______, _______, _______, _______, _______, _______,                             _______, KC_LBRC, KC_RBRC, _______,  _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          KC_VOLU, KC_VOLD, KC_MUTE,  _______, _______,
@@ -150,7 +150,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // 
 // uint32_t default_layer_state_set_user(uint32_t state) {
 //   rgblight_sethsv(HSV_PURPLE);
-//   rgblight_mode(5);
 //   return state;
 // }
 // 
@@ -159,15 +158,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     switch(layer) {
 //     case BASE:
 //         rgblight_sethsv(HSV_PURPLE);
+//         rgblight_mode(5);
 //         break;
 //     case SYMB:
 //         rgblight_sethsv(HSV_WHITE);
+//         rgblight_mode(5);
 //         break;
 //     case MDIA:
 //         rgblight_sethsv(HSV_GREEN);
+//         rgblight_mode(5);
 //         break;
 //     case TTV:
 //         rgblight_sethsv(HSV_CYAN);
+//         rgblight_mode(5);
 //         break;
 //     }
 //     return state;
