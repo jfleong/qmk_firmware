@@ -96,16 +96,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-    // DEFAULT DEFAULT layer
-    // [BASE] = LAYOUT_moonlander(
-    //     KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LEFT,           KC_RGHT, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-    //     KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(SYMB),         TG(SYMB), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-    //     KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_HYPR,           KC_MEH,  KC_H,    KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
-    //     KC_LSFT, LCTL_T(KC_Z),KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
-    // LT(SYMB,KC_GRV),WEBUSB_PAIR,A(KC_LSFT),KC_LEFT, KC_RGHT,  LALT_T(KC_APP),    RCTL_T(KC_ESC),   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
-    //                                         KC_SPC,  KC_BSPC, KC_LGUI,           KC_LALT,  KC_TAB,  KC_ENT
-    // ),
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
@@ -123,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,           _______, _______, KC_4,    KC_5,    KC_6,    _______, _______,
         _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             _______, KC_1,    KC_2,    KC_3,    _______, _______,
         EEP_RST, _______, _______, _______, _______,          RGB_TOG,           RGB_TOG,          KC_0,    KC_DOT,  _______, _______,  _______,
-                                            _______, _______, _______,           TOGGLE_LAYER_COLOR,_______, _______
+                                            _______, _______, RGB_MOD,           TOGGLE_LAYER_COLOR,RGB_HUI, RGB_SAI
     ),
 
     [MDIA] = LAYOUT_moonlander(
@@ -145,32 +135,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-// // How long (in milliseconds) to wait between animation steps for each of the "Solid color breathing" animations
-// const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {30, 20, 10, 5};
-// 
-// uint32_t default_layer_state_set_user(uint32_t state) {
-//   rgblight_sethsv(HSV_PURPLE);
-//   return state;
-// }
-// 
+#ifdef RGBLIGHT_ENABLE
+const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {30, 20, 10, 5};
+void keyboard_post_init_user(void) {
+  rgblight_enable_noeeprom(); // Enables RGB, without saving settings
+  rgblight_sethsv_noeeprom(HSV_PURPLE);
+  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+}
+#endif
+
 // uint32_t layer_state_set_user(uint32_t state) {
 //     uint8_t layer = biton32(state);
 //     switch(layer) {
 //     case BASE:
 //         rgblight_sethsv(HSV_PURPLE);
-//         rgblight_mode(5);
 //         break;
 //     case SYMB:
 //         rgblight_sethsv(HSV_WHITE);
-//         rgblight_mode(5);
 //         break;
 //     case MDIA:
 //         rgblight_sethsv(HSV_GREEN);
-//         rgblight_mode(5);
 //         break;
 //     case TTV:
 //         rgblight_sethsv(HSV_CYAN);
-//         rgblight_mode(5);
 //         break;
 //     }
 //     return state;
