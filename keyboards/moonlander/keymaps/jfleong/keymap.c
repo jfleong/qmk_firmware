@@ -30,10 +30,7 @@ enum layers {
 
 enum custom_keycodes {
     TWITCHTV = SAFE_RANGE,
-    CHAT_MASHER,
-    CHAT_LUV,
-    CHAT_POGGERS,
-    CHAT_GG,
+    CHAT_EMOTES,
     NEXT,
     LIST,
 };
@@ -45,30 +42,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("https://twitch.tv/jlbanger");
             }
             break;
-        case CHAT_MASHER:
+        case CHAT_EMOTES:
             if (record->event.pressed) {
-                SEND_STRING("jlbangMasher jlbangMasher jlbangMasher");
-            } else {
-                SEND_STRING(SS_TAP(X_ENTER));
-            }
-            break;
-        case CHAT_LUV:
-            if (record->event.pressed) {
-                SEND_STRING("jlbangLuv jlbangLuv jlbangLuv");
-            } else {
-                SEND_STRING(SS_TAP(X_ENTER));
-            }
-            break;
-        case CHAT_POGGERS:
-            if (record->event.pressed) {
-                SEND_STRING("jlbangPoggers jlbangPoggers jlbangPoggers");
-            } else {
-                SEND_STRING(SS_TAP(X_ENTER));
-            }
-            break;
-        case CHAT_GG:
-            if (record->event.pressed) {
-                SEND_STRING("x4thehGG x4thehGG x4thehGG ");
+                SEND_STRING("T1: jlbangMasher jlbangShoots jlbangLove jlbangPog jlbangThug T2/3: jlbangRIP jlbangMad cheermotes: jlbangCry jlbangHaha jlbangTeehee jlbangJaycina");
             } else {
                 SEND_STRING(SS_TAP(X_ENTER));
             }
@@ -95,10 +71,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_ESC,   KC_1,    KC_2,     KC_3,    KC_4,     KC_5,   KC_6,             KC_7,       KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
-        KC_TAB,   KC_Q,    KC_W,     KC_E,    KC_R,     KC_T,   _______,          HYPR(KC_A), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        KC_LCTRL, KC_A,    KC_S,     KC_D,    KC_F,     KC_G,   KC_HYPR,          HYPR(KC_V), KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_TAB,   KC_Q,    KC_W,     KC_E,    KC_R,     KC_T,   _______,          HYPR(KC_9), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_LCTRL, KC_A,    KC_S,     KC_D,    KC_F,     KC_G,   KC_HYPR,          HYPR(KC_0), KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT,  KC_Z,    KC_X,     KC_C,    KC_V,     KC_B,                                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_GRV,   _______, KC_LCTRL, KC_LGUI, KC_LALT,          OSL(TTV),         OSL(TTV),            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, _______,
+        KC_GRV,   _______, KC_LCTRL, KC_LGUI, KC_LALT,          OSL(TTV),         OSL(TTV),            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, LSFT(KC_F22),
                                      LT(SYMB, KC_ENT), KC_SPC,  _______,                      KC_ENT,  _______, LT(MDIA, KC_SPC)
     ),
 
@@ -112,20 +88,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [MDIA] = LAYOUT_moonlander(
-        LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______,  _______, RESET,
+        LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______,  _______, _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, KC_LPRN, KC_RPRN, KC_PAST,  _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_MINS, _______,
-        _______, _______, _______, _______, _______, _______,                             _______, KC_LBRC, KC_RBRC, _______,  _______, _______,
-        _______, _______, _______, _______, _______,          _______,           _______,          KC_VOLU, KC_VOLD, KC_MUTE,  _______, _______,
+        _______, _______, _______, _______, KC_EQL,  _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_MINS, _______,
+        _______, _______, _______, _______, _______, _______,                             _______, KC_LBRC, KC_RBRC, KC_BSLS,  _______, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______,  _______, _______,
                                             _______, _______, _______,           _______, _______, KC_MPLY
     ),
 
     [TTV] = LAYOUT_moonlander(
-        TWITCHTV, _______, _______, _______, _______, _______, _______,          _______, _______, _______,     _______, _______,  _______, _______,
-        _______,  _______, _______, _______, _______, _______, _______,          _______, _______, _______,     _______, _______,  CHAT_POGGERS, _______,
-        _______,  _______, _______, _______, _______, _______, _______,          CHAT_GG, _______, _______,     _______, CHAT_LUV, _______, _______,
-        _______,  _______, _______, _______, _______, _______,                            _______, CHAT_MASHER, _______, _______,  _______, LIST,
-        _______,  _______, _______, _______, _______,         _______,           _______,          _______,     _______, _______,  _______, NEXT,
+        TWITCHTV, CHAT_EMOTES, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+        _______,  _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+        _______,  _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+        _______,  _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, LIST,
+        _______,  _______, _______, _______, _______,         _______,           _______,          _______, _______, _______, _______, NEXT,
                                             _______, _______, _______,           _______, _______, _______
     ),
 };
