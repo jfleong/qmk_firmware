@@ -44,7 +44,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case CHAT_EMOTES:
             if (record->event.pressed) {
-                SEND_STRING("T1: jlbangMasher jlbangShoots jlbangLove jlbangPog jlbangThug T2/3: jlbangRIP jlbangMad cheermotes: jlbangCry jlbangHaha jlbangTeehee jlbangJaycina");
+                SEND_STRING("Follower: jlbangFistbump jlbangJL jlbangBitbybit jlbangPog jlbangFeelsbad T1: jlbangMasher jlbangShoots jlbangAdag jlbang5head jlbangImnotcrying jlbangRage jlbangThug jlbangLuv jlbangSoGood T2/3: jlbangRIP jlbangSus Cheer: jlbangTeehee jlbangCry jlbangJaycina ");
             } else {
                 SEND_STRING(SS_TAP(X_ENTER));
             }
@@ -71,15 +71,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_ESC,   KC_1,    KC_2,     KC_3,    KC_4,     KC_5,   KC_6,             KC_7,       KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
-        KC_TAB,   KC_Q,    KC_W,     KC_E,    KC_R,     KC_T,   _______,          HYPR(KC_9), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        KC_LCTRL, KC_A,    KC_S,     KC_D,    KC_F,     KC_G,   KC_HYPR,          HYPR(KC_0), KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_TAB,   KC_Q,    KC_W,     KC_E,    KC_R,     KC_T,   _______,          LALT(KC_A), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_LCTRL, KC_A,    KC_S,     KC_D,    KC_F,     KC_G,   KC_HYPR,          LALT(KC_V), KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT,  KC_Z,    KC_X,     KC_C,    KC_V,     KC_B,                                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         KC_GRV,   _______, KC_LCTRL, KC_LGUI, KC_LALT,          OSL(TTV),         OSL(TTV),            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, LSFT(KC_F22),
-                                     LT(SYMB, KC_ENT), KC_SPC,  _______,                      KC_ENT,  _______, LT(MDIA, KC_SPC)
+                                     LT(SYMB, KC_ENT), KC_SPC,  _______,                      KC_ENT,  KC_BSPC, LT(MDIA, KC_SPC)
     ),
 
     [SYMB] = LAYOUT_moonlander(
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, KC_LPRN, KC_RPRN, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, KC_LPRN, KC_RPRN, KC_DEL,
         _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, _______,           _______, _______, KC_7,    KC_8,    KC_9,    _______, _______,
         _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,           _______, _______, KC_4,    KC_5,    KC_6,    _______, _______,
         _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             _______, KC_1,    KC_2,    KC_3,    _______, _______,
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MDIA] = LAYOUT_moonlander(
         LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______,  _______, _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, KC_LPRN, KC_RPRN, KC_PAST,  _______, _______,
-        _______, _______, _______, _______, KC_EQL,  _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_MINS, _______,
+        _______, _______, _______, KC_MINS, KC_EQL,  _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, _______, _______,
         _______, _______, _______, _______, _______, _______,                             _______, KC_LBRC, KC_RBRC, KC_BSLS,  _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______,  _______, _______,
                                             _______, _______, _______,           _______, _______, KC_MPLY
