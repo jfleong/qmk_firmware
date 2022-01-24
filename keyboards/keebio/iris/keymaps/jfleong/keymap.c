@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV,          KC_BSPC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, LSFT(KC_F22),
+     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LALT,         KC_BSPC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, LSFT(KC_F22),
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     KC_LGUI, LOWER,   KC_ENT,                    KC_SPC,  RAISE,   KC_RALT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LALT,         KC_BSPC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, TO(_QWERTY),
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_GRV, KC_ENT,  KC_SPC,                    KC_SPC,  RAISE,   KC_RGUI
+                                    KC_GRV,  KC_SPC,  KC_ENT,                    KC_SPC,  RAISE,   KC_RGUI
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
@@ -126,22 +126,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-// void rgb_matrix_indicators_user(void) {
-//    switch (biton32(layer_state)) {
-//       case _QWERTY:
-//          rgb_matrix_set_color_all(RGB_PURPLE);
-//          break;
-//       case _LOWER:
-//          rgb_matrix_set_color_all(RGB_CYAN);
-//          break;
-//       case _RAISE:
-//          rgb_matrix_set_color_all(RGB_GREEN);
-//          break;
-//       case _ADJUST:
-//          rgb_matrix_set_color_all(RGB_BLUE);
-//          break;
-//       case _FPS:
-//          rgb_matrix_set_color_all(RGB_RED);
-//          break;
-//    }
-// }
+uint32_t default_layer_state_set_user(uint32_t state) {
+  rgb_matrix_sethsv(HSV_PURPLE);
+  return state;
+}
+
+uint32_t layer_state_set_user(uint32_t state) {
+   uint8_t layer = biton32(state);
+   switch(layer) {
+   case _QWERTY:
+      rgb_matrix_sethsv_noeeprom(HSV_PURPLE);
+      break;
+   case _LOWER:
+      rgb_matrix_sethsv_noeeprom(HSV_BLUE);
+      break;
+   case _RAISE:
+      rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+      break;
+   case _ADJUST:
+      rgb_matrix_sethsv_noeeprom(HSV_YELLOW);
+      break;
+   case _FPS:
+      rgb_matrix_sethsv_noeeprom(HSV_RED);
+      break;
+   }
+   return state;
+}
