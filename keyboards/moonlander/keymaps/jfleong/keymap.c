@@ -44,7 +44,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case CHAT_EMOTES:
             if (record->event.pressed) {
-                SEND_STRING("Follower: jlbangFistbump jlbangJL jlbangBitbybit jlbangPog jlbangFeelsbad T1: jlbangMasher jlbangShoots jlbangAdag jlbang5head jlbangImnotcrying jlbangRage jlbangThug jlbangLuv jlbangSoGood T2/3: jlbangRIP jlbangSus Cheer: jlbangTeehee jlbangCry jlbangJaycina ");
+                SEND_STRING("Follower: jlbangFistbump jlbangJL jlbangBitbybit jlbangPog jlbangFeelsbad T1: jlbangMasher jlbangShoots jlbangAdag jlbang5head jlbangImnotcrying jlbangRage jlbangThug jlbangLuv jlbangSoGood T2/3: jlbangRIP jlbangDoggo Cheer: jlbangTeehee jlbangCry jlbangJaycina ");
             } else {
                 SEND_STRING(SS_TAP(X_ENTER));
             }
