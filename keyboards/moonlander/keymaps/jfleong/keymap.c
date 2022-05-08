@@ -22,114 +22,87 @@
 #include "version.h"
 
 enum layers {
-    BASE,  // default layer
-    SYMB,  // symbols
-    MDIA,  // media keys
-    TTV,  // twitch tv keys
-};
-
-enum custom_keycodes {
-    TWITCHTV = SAFE_RANGE,
-    CHAT_EMOTES,
-    NEXT,
-    LIST,
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case TWITCHTV:
-            if (record->event.pressed) {
-                SEND_STRING("https://twitch.tv/jlbanger");
-            }
-            break;
-        case CHAT_EMOTES:
-            if (record->event.pressed) {
-                SEND_STRING("Follower: jlbangFistbump jlbangJL jlbangBitbybit jlbangPog jlbangFeelsbad T1: jlbangMasher jlbangShoots jlbangAdag jlbang5head jlbangImnotcrying jlbangRage jlbangThug jlbangLuv jlbangSoGood T2/3: jlbangRIP jlbangDoggo Cheer: jlbangTeehee jlbangCry jlbangJaycina ");
-            } else {
-                SEND_STRING(SS_TAP(X_ENTER));
-            }
-            break;
-        case NEXT:
-            if (record->event.pressed) {
-                SEND_STRING("!next");
-            } else {
-                SEND_STRING(SS_TAP(X_ENTER));
-            }
-            break;
-        case LIST:
-            if (record->event.pressed) {
-                SEND_STRING("!list");
-            } else {
-                SEND_STRING(SS_TAP(X_ENTER));
-            }
-            break;
-    }
-    return true;
+    BASE = SAFE_RANGE,  // default layer
+    LOWER,  // symbols
+    RAISE,  // media keys
+    ADJUST,  // twitch tv keys
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        KC_ESC,   KC_1,    KC_2,     KC_3,    KC_4,     KC_5,   KC_6,             KC_7,       KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
-        KC_TAB,   KC_Q,    KC_W,     KC_E,    KC_R,     KC_T,   _______,          LALT(KC_A), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        KC_LCTRL, KC_A,    KC_S,     KC_D,    KC_F,     KC_G,   HYPR(KC_M),       LALT(KC_V), KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        KC_LSFT,  KC_Z,    KC_X,     KC_C,    KC_V,     KC_B,                                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_GRV,   _______, KC_LCTRL, KC_LGUI, KC_LALT,          OSL(TTV),         OSL(TTV),            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, LSFT(KC_F22),
-                                     LT(SYMB, KC_ENT), KC_SPC,  _______,                      KC_ENT,  KC_BSPC, LT(MDIA, KC_SPC)
+        KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,     KC_5,   KC_6,             KC_7,       KC_8, KC_9,  KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
+        KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,   _______,          LALT(KC_A), KC_Y, KC_U,  KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_LCTRL, KC_A,    KC_S,    KC_D,    KC_F,     KC_G,   _______,          LALT(KC_V), KC_H, KC_J,  KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                                 KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        KC_GRV,   _______, _______, KC_LGUI, LOWER,            KC_LALT,          KC_RALT,          RAISE, _______, _______, _______, LSFT(KC_F22),
+                                             KC_ENT,  KC_SPC,  _______,          _______,  KC_ENT, KC_SPC
     ),
 
-    [SYMB] = LAYOUT_moonlander(
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, KC_LPRN, KC_RPRN, KC_DEL,
-        _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, _______,           _______, _______, KC_7,    KC_8,    KC_9,    _______, _______,
-        _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,           _______, _______, KC_4,    KC_5,    KC_6,    _______, _______,
-        _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             _______, KC_1,    KC_2,    KC_3,    _______, _______,
-        EEP_RST, _______, _______, _______, _______,          RGB_TOG,           RGB_TOG,          KC_0,    KC_DOT,  _______, _______,  _______,
-                                            _______, _______, RGB_MOD,           TOGGLE_LAYER_COLOR,RGB_HUI, RGB_SAI
+    [_LOWER] = LAYOUT_moonlander(
+        KC_GRV,  _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, KC_7,    KC_8,    KC_9,    _______, _______,
+        _______, KC_ESC,  _______, _______, _______, _______, _______,           _______, _______, KC_4,    KC_5,    KC_6,    _______, _______,
+        _______, _______, _______, _______, _______, _______,                             _______, KC_1,    KC_2,    KC_3,    _______, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          KC_0,    KC_DOT,  _______, _______, _______,
+                                            _______, _______, _______,           _______, _______, _______
     ),
 
-    [MDIA] = LAYOUT_moonlander(
+    [_RAISE] = LAYOUT_moonlander(
         LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______,  _______, _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, KC_LPRN, KC_RPRN, KC_PAST,  _______, _______,
-        _______, _______, _______, KC_MINS, KC_EQL,  _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, _______, _______,
+        _______, _______, _______, KC_MINS, KC_EQL,  _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_BSPC, _______,
         _______, _______, _______, _______, _______, _______,                             _______, KC_LBRC, KC_RBRC, KC_BSLS,  _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______,  _______, _______,
-                                            _______, _______, _______,           _______, _______, KC_MPLY
+                                            _______, _______, _______,           _______, _______, _______
     ),
 
-    [TTV] = LAYOUT_moonlander(
-        TWITCHTV, CHAT_EMOTES, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-        _______,  _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-        _______,  _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-        _______,  _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, LIST,
-        _______,  _______, _______, _______, _______,         _______,           _______,          _______, _______, _______, _______, NEXT,
+    [_ADJUST] = LAYOUT_moonlander(
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
 };
 
-#ifdef RGBLIGHT_ENABLE
-const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {30, 20, 10, 5};
-void keyboard_post_init_user(void) {
-  rgblight_enable_noeeprom(); // Enables RGB, without saving settings
-  rgblight_sethsv_noeeprom(HSV_PURPLE);
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case LOWER:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      } else {
+        layer_off(_LOWER);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case RAISE:
+      if (record->event.pressed) {
+        layer_on(_RAISE);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      } else {
+        layer_off(_RAISE);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case ADJUST:
+      if (record->event.pressed) {
+        layer_on(_ADJUST);
+      } else {
+        layer_off(_ADJUST);
+      }
+      return false;
+      break;
+  }
+  return true;
 }
-#endif
-
-// uint32_t layer_state_set_user(uint32_t state) {
-//     uint8_t layer = biton32(state);
-//     switch(layer) {
-//     case BASE:
-//         rgblight_sethsv(HSV_PURPLE);
-//         break;
-//     case SYMB:
-//         rgblight_sethsv(HSV_WHITE);
-//         break;
-//     case MDIA:
-//         rgblight_sethsv(HSV_GREEN);
-//         break;
-//     case TTV:
-//         rgblight_sethsv(HSV_CYAN);
-//         break;
-//     }
-//     return state;
-// }
