@@ -136,15 +136,19 @@ uint32_t layer_state_set_user(uint32_t state) {
    switch(layer) {
    case _QWERTY:
       rgb_matrix_sethsv_noeeprom(HSV_PURPLE);
+      rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS);
       break;
    case _LOWER:
       rgb_matrix_sethsv_noeeprom(HSV_PINK);
+      rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS);
       break;
    case _RAISE:
       rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+      rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS);
       break;
    case _ADJUST:
       rgb_matrix_sethsv_noeeprom(HSV_YELLOW);
+      rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS);
       break;
    case _FPS:
       rgb_matrix_sethsv_noeeprom(HSV_RED);
