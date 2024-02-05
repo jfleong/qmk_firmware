@@ -24,3 +24,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_LAYERS
 // Allow Light Layers to override RGB off configuration
 #define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
