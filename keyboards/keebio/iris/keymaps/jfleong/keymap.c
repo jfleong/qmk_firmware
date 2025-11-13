@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "process_combo.h"
 
 
 #define _QWERTY 0
@@ -36,9 +37,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, KC_ESC,  _______, _______, _______,                            _______, KC_7,    KC_8,    KC_9,    _______, KC_MEDIA_NEXT_TRACK,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______,                            _______, KC_4,    KC_5,    KC_6,    _______, KC_MEDIA_PREV_TRACK,
+     _______, _______, KC_TAB,  _______, _______, _______,                            _______, KC_4,    KC_5,    KC_6,    _______, KC_MEDIA_PREV_TRACK,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______, _______,          _______, _______, KC_1,    KC_2,    KC_3,    _______, KC_END,
+     _______, _______, _______, _______, _______, KC_GRV , _______,          _______, _______, KC_1,    KC_2,    KC_3,    _______, KC_END,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, KC_DEL,                    KC_0,    _______, KC_DOT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -126,12 +127,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-uint32_t default_layer_state_set_user(uint32_t state) {
+layer_state_t default_layer_state_set_user(layer_state_t state) {
   rgb_matrix_sethsv(HSV_PURPLE);
   return state;
 }
 
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
    uint8_t layer = biton32(state);
    switch(layer) {
    case _QWERTY:
@@ -153,7 +154,7 @@ uint32_t layer_state_set_user(uint32_t state) {
    return state;
 }
 
-const uint16_t PROGMEM esc[] = {KC_K, KC_K, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_K, KC_K, COMBO_END};
 combo_t key_combos[] = {
-    COMBO(ecs, KC_ESC),
+    COMBO(esc_combo, KC_ESC),
 };
